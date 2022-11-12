@@ -1,4 +1,4 @@
-# Chad: the inevitable
+# Chad: The Inevitable
 
 timed levels, multiple scenes per level, gain "time" with pick-up-able? use hides to not be seen.
 

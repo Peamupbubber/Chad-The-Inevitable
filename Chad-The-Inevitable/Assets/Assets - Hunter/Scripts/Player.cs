@@ -10,13 +10,7 @@ public class Player : MonoBehaviour
     //Initialized in the Unity inspector
     [SerializeField] public float speed;
     [SerializeField] public float jumpForce;
-    [SerializeField] public float invincibilityFramesTime;
 
-    [SerializeField] public int maxHealth = 5;
-    [SerializeField] public int maxPew = 5;
-
-    [SerializeField] public GameObject pewPew;
-    [SerializeField] public TextMeshProUGUI pewText;
     [SerializeField] public TextMeshProUGUI deathText;
 
     [SerializeField] public LayerMask wall;
@@ -29,11 +23,9 @@ public class Player : MonoBehaviour
     private Vector3 posBeforeFall;
 
     private int health;
-    private int currentPew;
     private int facing = 1;
 
     private bool canMove = true;
-    private bool hasInvincibiltyFrames = false;
 
     private string levelName;
 
@@ -46,11 +38,6 @@ public class Player : MonoBehaviour
 
         //gameManager = FindObjectOfType<GameManager>();
         playerRb = GetComponent<Rigidbody2D>();
-
-        health = maxHealth;
-        currentPew = maxPew;
-
-        pewText.text = currentPew + " / " + maxPew;
 
         Scene currentScene = SceneManager.GetActiveScene();
         levelName = currentScene.name;
@@ -144,20 +131,8 @@ public class Player : MonoBehaviour
 
     private void GotHit()
     {
-        StartCoroutine(InvincibilityFrames());
         health--;
         hearts[health].gameObject.SetActive(false);
-    }
-
-    IEnumerator InvincibilityFrames()
-    {
-        hasInvincibiltyFrames = true;
-        canMove = false;
-
-        yield return new WaitForSeconds(invincibilityFramesTime);
-
-        hasInvincibiltyFrames = false;
-        canMove = true;
     }
     /*
     private void OnTriggerEnter2D(Collider2D collision)

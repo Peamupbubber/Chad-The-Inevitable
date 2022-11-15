@@ -11,18 +11,18 @@ public class Player : MonoBehaviour
     [SerializeField] public float speed;
     [SerializeField] public float jumpForce;
 
-    [SerializeField] public TextMeshProUGUI deathText;
+    //[SerializeField] public TextMeshProUGUI deathText;
 
     [SerializeField] public LayerMask wall;
 
-    [SerializeField] public Image[] hearts;
+    //[SerializeField] public Image[] hearts;
 
     //Initialized in the script
     //private GameManager gameManager;
     private Rigidbody2D playerRb;
     private Vector3 posBeforeFall;
 
-    private int health;
+    private int health = 5;
     private int facing = 1;
 
     private bool canMove = true;
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         levelName = currentScene.name;
 
-        pauseMenu = GameObject.FindGameObjectWithTag("Pause Menu");
+        //pauseMenu = GameObject.FindGameObjectWithTag("Pause Menu");
     }
 
     // Update is called once per frame
@@ -83,26 +83,11 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && playerRb.velocity.y == 0)
         {
+            Debug.Log("2");
             playerRb.AddForce(new Vector2(0f, jumpForce));
         }
     }
 
-    /*
-    private void Shoot()
-    {
-        if (Input.GetMouseButtonDown(0) && currentPew > 0)
-        {
-            float dir = facing;
-            float side = 0.75f * dir;
-
-            GameObject instance = Instantiate(pewPew, new Vector3(transform.position.x + side, transform.position.y), Quaternion.identity);
-            instance.GetComponent<PewPew>().dir = dir;
-
-            currentPew--;
-            pewText.text = currentPew + " / " + maxPew;
-        }
-    }
-    */
     private bool CheckIfPauseMenuEnabled()
     {
         //return pauseMenu.;
@@ -113,7 +98,7 @@ public class Player : MonoBehaviour
     {
         if (health <= 0)
         {
-            deathText.gameObject.SetActive(true);
+            //deathText.gameObject.SetActive(true);
         }
         return health <= 0;
     }
@@ -132,7 +117,7 @@ public class Player : MonoBehaviour
     private void GotHit()
     {
         health--;
-        hearts[health].gameObject.SetActive(false);
+        //hearts[health].gameObject.SetActive(false);
     }
     /*
     private void OnTriggerEnter2D(Collider2D collision)

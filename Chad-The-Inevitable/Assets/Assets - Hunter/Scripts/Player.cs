@@ -83,7 +83,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && playerRb.velocity.y == 0)
         {
-            Debug.Log("2");
             playerRb.AddForce(new Vector2(0f, jumpForce));
         }
     }
